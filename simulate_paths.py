@@ -199,7 +199,7 @@ class System:
         plt.savefig(dir, dpi=100)
         plt.close()
 
-    def plot_grid_time(self, dir):
+    def plot_grid_time(self, dir, eta):
         fig = plt.figure()
 
         while True:
@@ -222,11 +222,11 @@ eta=2*np.pi
 v=.1
 T_0=1
 r_c=4
-dir = 'plots_path_6'
+dir = 'path_figs'
 
 system = System(N=N, M=M, L=L,R=R,eta=eta,v=v,T_0=T_0, r_c=r_c, dir=dir)
-system.iterate(T=3500, plot_freq=10)
-system.plot_grid_time(dir)
+system.iterate(T=100, plot_freq=10)
+system.plot_grid_time(dir, eta)
 
 print()
  

@@ -183,7 +183,6 @@ class System:
                     break
                 plt.plot([r_f[0],r_i[0]],[r_f[1],r_i[1]],color=c)
 
-            #plt.plot([p.r[0],p.r_[0],p.r__[0]],[p.r[1],p.r_[1],p.r__[1]],c='b')
         plt.axis([0, self.L, 0, self.L])
         plt.gca().set_aspect('equal', adjustable='box')
         plt.tight_layout()
@@ -191,7 +190,7 @@ class System:
         plt.savefig(dir, dpi=100)
         plt.close()
 
-    def plot_grid_time(self, dir):
+    def plot_grid_time(self, dir, eta):
         fig = plt.figure()
 
         while True:
@@ -206,17 +205,20 @@ class System:
                 plt.title('$\\eta$=%.3f, t=%i'%(eta,t), fontsize=15)
                 plt.pause(0.005)
                 plt.draw()
-N=100
-L=100
-R=1
-eta=2*np.pi
-v=.05
-T_0=1
-r_c=6
-dir = 'plots4'
 
-system = System(N=N,L=L,R=R,eta=eta,v=v,T_0=T_0, r_c=r_c, dir=dir)
-system.iterate(T=2400, plot_freq=20)
-system.plot_grid_time(dir)
+def main():
+    N=100
+    L=100
+    R=1
+    eta=2*np.pi
+    v=.05
+    T_0=1
+    r_c=6
+    dir = 'coupling_figs'
 
-print()
+    system = System(N=N,L=L,R=R,eta=eta,v=v,T_0=T_0, r_c=r_c, dir=dir)
+    system.iterate(T=100, plot_freq=20)
+    system.plot_grid_time(dir, eta)
+
+if __name__ == "__main__":
+    main()
